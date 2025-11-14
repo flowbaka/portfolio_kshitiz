@@ -3,20 +3,30 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
+  <title>Kshitiz Shrestha — Portfolio</title>
+
+  <!-- favicon (place favicon.ico in your project root or change path) -->
+  <link rel="icon" href="favicon.ico">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="logo">Kshitiz Shrestha</h1>
-      <p class="tagline">Data Scienthis · ML Gooner · Problem Maker</p>
-    </div>  
+    <div class="container header-inner">  
+      <div class="brand">
+        <h1 class="logo">Kshitiz Shrestha</h1>
+        <p class="tagline">Data Scientist · ML Engineer · Problem Solver</p>
+      </div>
+    </div>
   </header>
 
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container nav-inner">
-      <ul>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        ☰
+      </button>
+
+      <ul id="primary-nav" class="nav-list">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -27,26 +37,24 @@
   <main>
     <section id="about" class="about container">
       <h2>About</h2>
-      <p>Hello — I’m <strong>Kshitiz Shrestha</strong>. I build ml models that helps in solving real world problmens more efficently and accurately than a human. This portfolio showcases some of my projects and contact details.</p>
+      <p>Hello — I’m <strong>Kshitiz Shrestha</strong>. I build ML models that help solve real-world problems more efficiently and accurately than humans alone. This portfolio showcases some of my projects and contact details.</p>
     </section>
 
     <section id="projects" class="projects container">
       <h2>Projects</h2>
+
       <div class="project-grid">
-        <article class="project">
-          <img src="images/project1.png" alt="Screenshot of project 1">
+        <article class="project" tabindex="0">
+          <img src="images/project1.png" alt="Plant Disease Detection screenshot">
           <h3>Plant Disease Detection</h3>
-          <p>We made this project during SEP in our college. The project detects if the plant is healthy or unhealthy. The porject was mostly made with the help of using AI ( OpenAi ).</p>
+          <p>A mobile-first app that classifies leaf images to detect diseases. Built with TensorFlow and a custom CNN; includes augmentation and a small web UI.It was mostly done with the help of using Ai ( OpenAi ).</p>
         </article>
 
-        <article class="project">
-          <img src="images/project2.png" alt="Screenshot of project 2">
-          <h3>Heart Diseae Detection </h3>
-          <p>This projects detects if the person has heart diease or not. For this, I used dataset from the kaggle dataset. The model used is LinearRegression().
-            Accuracy is 80%.
-          </p>
+        <article class="project" tabindex="0">
+          <img src="images/project2.png" alt="Heart Disease Detection screenshot">
+          <h3>Heart Disease Detection</h3>
+          <p>Predicts cardiac risk from commonly available clinical features. Trained on a public dataset from kaggle. Did it in a google colab</p>
         </article>
-
       </div>
     </section>
 
@@ -54,31 +62,49 @@
       <h2>Contact</h2>
       <p>If you’d like to work together or say hi, use the form below.</p>
 
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" action="#" method="post" aria-labelledby="contact-heading" novalidate>
+        <h3 id="contact-heading" class="visually-hidden">Contact form</h3>
+
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" aria-required="true" required placeholder="Your full name">
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" aria-required="true" required placeholder="you@example.com">
 
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
+        <textarea id="message" name="message" rows="6" aria-required="true" required placeholder="Tell me about your project or question"></textarea>
 
-        <button type="submit">Send message</button>
+        <button type="submit" class="btn-primary">Send message</button>
       </form>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> Kshitiz Shrestha. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    // simple script to set current year
+    // set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple nav toggle for small screens
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.getElementById('primary-nav');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navList.classList.toggle('nav-open');
+    });
+
+    // Close mobile nav when a link is clicked (better UX)
+    document.querySelectorAll('.nav-list a').forEach(a => {
+      a.addEventListener('click', () => {
+        navList.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
   </script>
 </body>
 </html>
-
