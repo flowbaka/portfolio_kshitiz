@@ -8,11 +8,12 @@
   <!-- favicon (place favicon.ico in your project root or change path) -->
   <link rel="icon" href="favicon.ico">
 
+  <!-- main stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">  
+    <div class="container header-inner">
       <div class="brand">
         <h1 class="logo">Kshitiz Shrestha</h1>
         <p class="tagline">Data Scientist · ML Engineer · Problem Solver</p>
@@ -29,6 +30,7 @@
       <ul id="primary-nav" class="nav-list">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -47,7 +49,7 @@
         <article class="project" tabindex="0">
           <img src="images/project1.png" alt="Plant Disease Detection screenshot">
           <h3>Plant Disease Detection</h3>
-          <p>A mobile-first app that classifies leaf images to detect diseases. Built with TensorFlow and a custom CNN; includes augmentation and a small web UI.It was mostly done with the help of using Ai ( OpenAi ).</p>
+          <p>A mobile-first app that classifies leaf images to detect diseases. Built with TensorFlow and a custom CNN; includes augmentation and a small web UI. It was mostly done with the help of using Ai (OpenAi).</p>
         </article>
 
         <article class="project" tabindex="0">
@@ -55,6 +57,52 @@
           <h3>Heart Disease Detection</h3>
           <p>Predicts cardiac risk from commonly available clinical features. Trained on a public dataset from kaggle. Did it in a google colab</p>
         </article>
+      </div>
+    </section>
+
+    <!-- Skills Section (animated) -->
+    <section id="skills" class="skills-section container">
+      <h2>My Skills</h2>
+      <p class="mt-1" style="color:var(--muted)">A quick visual of technologies I use — bars animate when they come into view.</p>
+
+      <div class="skills-grid mt-1" aria-label="Skill levels">
+        <div class="skill-box" data-skill="HTML">
+          <div class="skill-left">
+            <div class="label">HTML</div>
+          </div>
+          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
+            <div class="bar" aria-hidden="true">
+              <div class="fill" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
+            </div>
+            <div class="percent" aria-hidden="true">90%</div>
+          </div>
+        </div>
+
+        <div class="skill-box" data-skill="CSS">
+          <div class="skill-left">
+            <div class="label">CSS</div>
+          </div>
+          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
+            <div class="bar" aria-hidden="true">
+              <div class="fill" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
+            </div>
+            <div class="percent" aria-hidden="true">80%</div>
+          </div>
+        </div>
+
+        <div class="skill-box" data-skill="JavaScript">
+          <div class="skill-left">
+            <div class="label">JavaScript</div>
+          </div>
+          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
+            <div class="bar" aria-hidden="true">
+              <div class="fill" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
+            </div>
+            <div class="percent" aria-hidden="true">70%</div>
+          </div>
+        </div>
+
+        <!-- Add more skills easily by copying a skill-box and changing data-percent + label -->
       </div>
     </section>
 
@@ -105,6 +153,55 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    /* ========== Animated Skill Bars ========== */
+    (function () {
+      const fills = Array.from(document.querySelectorAll('.fill'));
+
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: just animate immediately
+        fills.forEach(expandFill);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const fill = entry.target;
+            expandFill(fill);
+            obs.unobserve(fill);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.15
+      });
+
+      fills.forEach((f) => observer.observe(f));
+
+      // Expand function with accessible updates and a little stagger
+      function expandFill(fillEl) {
+        const percent = parseInt(fillEl.getAttribute('data-percent') || 0, 10);
+        // small jittered delay based on index for stagger effect
+        const index = fills.indexOf(fillEl);
+        const delay = Math.min(500, index * 120); // ms
+        fillEl.style.transition = 'width 1.2s cubic-bezier(.2,.9,.2,1) ' + (delay/1000) + 's';
+        // set width (triggers transition)
+        requestAnimationFrame(() => {
+          fillEl.style.width = percent + '%';
+          fillEl.setAttribute('aria-valuenow', percent);
+          // Put visible text inside fill for large widths, otherwise keep percent on the right
+          if (percent >= 18) {
+            fillEl.textContent = percent + '%';
+            // ensure contrast for narrower widths by hiding when too small
+            if (percent < 28) {
+              fillEl.style.paddingRight = '6px';
+            }
+          }
+        });
+      }
+    })();
   </script>
 </body>
 </html>
