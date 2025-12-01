@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Form Details — Submission</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container" style="padding-top:2rem;">
+    <h1>Form Submission</h1>
+    <p id="msg" class="mt-1" style="color:var(--muted)"></p>
+
+    <div class="project" id="details" style="margin-top:1rem;">
+      <h3 id="d-name">Name: —</h3>
+      <p id="d-email">Email: —</p>
+      <p id="d-message">Message: —</p>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <button id="edit-again" class="btn-primary">Edit / Send another</button>
+      <button id="clear" style="margin-left:.5rem;" class="btn-primary">Clear saved</button>
+    </div>
+  </main>
+
+  <script>
+    // read from localStorage and populate
+    const data = JSON.parse(localStorage.getItem('contact_form') || 'null');
+    const msg = document.getElementById('msg');
+    if (!data) {
+      msg.textContent = 'No saved form found. Please submit the form first.';
+      document.getElementById('details').style.display = 'none';
+    } else {
+      document.getElementById('d-name').textContent = 'Name: ' + data.name;
+      document.getElementById('d-email').textContent = 'Email: ' + data.email;
+      document.getElementById('d-message').textContent = 'Message: ' + data.message;
+      msg.textContent = 'Form data loaded from localStorage.';
+    }
+
+    document.getElementById('edit-again').addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+    document.getElementById('clear').addEventListener('click', () => {
+      localStorage.removeItem('contact_form');
+      alert('Saved form cleared.');
+      location.reload();
+    });
+  </script>
+</body>
+</html>

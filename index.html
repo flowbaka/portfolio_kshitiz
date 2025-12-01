@@ -2,36 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kshitiz Shrestha — Portfolio</title>
-
-  <!-- favicon (place favicon.ico in your project root or change path) -->
-  <link rel="icon" href="favicon.ico">
-
-  <!-- main stylesheet -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kshitiz Shrestha — Portfolio (Week 02)</title>
+  <meta name="description" content="Portfolio with JS upgrades: animated skills, form localStorage, slider, media, dark-mode, etc.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
+      <img src="images/Photo_Kshitiz Shrestha1 (2x2)a.jpg" alt="Profile" class="profile-photo" onerror="this.style.display='none'">
       <div class="brand">
         <h1 class="logo">Kshitiz Shrestha</h1>
         <p class="tagline">Data Scientist · ML Engineer · Problem Solver</p>
+      </div>
+
+      <div style="margin-left:auto; display:flex; gap:.5rem; align-items:center;">
+        <button id="theme-toggle" aria-pressed="false" title="Toggle theme">🌙</button>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
       </div>
     </div>
   </header>
 
   <nav class="site-nav" aria-label="Main navigation">
     <div class="container nav-inner">
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
-        ☰
-      </button>
-
-      <ul id="primary-nav" class="nav-list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul id="primary-nav" class="nav-list" role="menubar">
+        <li role="none"><a role="menuitem" href="#about">About</a></li>
+        <li role="none"><a role="menuitem" href="#projects">Projects</a></li>
+        <li role="none"><a role="menuitem" href="#skills">Skills</a></li>
+        <li role="none"><a role="menuitem" href="#media">Media</a></li>
+        <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -39,80 +38,106 @@
   <main>
     <section id="about" class="about container">
       <h2>About</h2>
-      <p>Hello — I’m <strong>Kshitiz Shrestha</strong>. I build ML models that help solve real-world problems more efficiently and accurately than humans alone. This portfolio showcases some of my projects and contact details.</p>
+      <p class="mt-1">Hello — I’m <strong>Kshitiz Shrestha</strong>. I build ML models that help solve real-world problems more efficiently and accurately than humans alone.</p>
     </section>
 
-    <section id="projects" class="projects container">
-      <h2>Projects</h2>
-
+    <section id="projects" class="projects container" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
       <div class="project-grid">
-        <article class="project" tabindex="0">
-          <img src="images/project1.png" alt="Plant Disease Detection screenshot">
+        <!-- NOTE: Projects are clickable via JS using data-url (no <a>) -->
+        <article class="project" tabindex="0" role="button" data-url="https://example.com/project1" aria-label="Open Plant Disease Detection project">
+          <img src="images/project1.png" alt="Plant Disease Detection">
           <h3>Plant Disease Detection</h3>
-          <p>A mobile-first app that classifies leaf images to detect diseases. Built with TensorFlow and a custom CNN; includes augmentation and a small web UI. It was mostly done with the help of using Ai (OpenAi).</p>
+          <p>A mobile-first app that classifies leaf images to detect diseases. Built with TensorFlow and a custom CNN; includes augmentation and a small web UI.</p>
         </article>
 
-        <article class="project" tabindex="0">
-          <img src="images/project2.png" alt="Heart Disease Detection screenshot">
+        <article class="project" tabindex="0" role="button" data-url="https://example.com/project2" aria-label="Open Heart Disease Detection project">
+          <img src="images/project2.png" alt="Heart Disease Detection">
           <h3>Heart Disease Detection</h3>
-          <p>Predicts cardiac risk from commonly available clinical features. Trained on a public dataset from kaggle. Did it in a google colab</p>
+          <p>Predicts cardiac risk from commonly available clinical features. Trained on a public dataset and developed in Google Colab.</p>
         </article>
+
+        <!-- add more project cards as needed -->
       </div>
     </section>
 
-    <!-- Skills Section (animated) -->
-    <section id="skills" class="skills-section container">
-      <h2>My Skills</h2>
+    <section id="skills" class="skills-section container" aria-labelledby="skills-heading">
+      <h2 id="skills-heading">My Skills</h2>
       <p class="mt-1" style="color:var(--muted)">A quick visual of technologies I use — bars animate when they come into view.</p>
 
       <div class="skills-grid mt-1" aria-label="Skill levels">
-        <div class="skill-box" data-skill="HTML">
-          <div class="skill-left">
-            <div class="label">HTML</div>
-          </div>
-          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
-            <div class="bar" aria-hidden="true">
-              <div class="fill" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
-            </div>
+        <div class="skill-box">
+          <div class="skill-left"><div class="label">Python</div></div>
+          <div style="flex:1; display:flex; gap:.75rem; align-items:center;">
+            <div class="bar" aria-hidden="true"><div class="fill" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
             <div class="percent" aria-hidden="true">90%</div>
           </div>
         </div>
 
-        <div class="skill-box" data-skill="CSS">
-          <div class="skill-left">
-            <div class="label">CSS</div>
-          </div>
-          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
-            <div class="bar" aria-hidden="true">
-              <div class="fill" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
-            </div>
+        <div class="skill-box">
+          <div class="skill-left"><div class="label">Scikit-Learn</div></div>
+          <div style="flex:1; display:flex; gap:.75rem; align-items:center;">
+            <div class="bar" aria-hidden="true"><div class="fill" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
             <div class="percent" aria-hidden="true">80%</div>
           </div>
         </div>
 
-        <div class="skill-box" data-skill="JavaScript">
-          <div class="skill-left">
-            <div class="label">JavaScript</div>
-          </div>
-          <div style="flex:1; margin-left:.75rem; display:flex; align-items:center; gap:.5rem;">
-            <div class="bar" aria-hidden="true">
-              <div class="fill" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"> </div>
-            </div>
+        <div class="skill-box">
+          <div class="skill-left"><div class="label">Pytorch</div></div>
+          <div style="flex:1; display:flex; gap:.75rem; align-items:center;">
+            <div class="bar" aria-hidden="true"><div class="fill" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
             <div class="percent" aria-hidden="true">70%</div>
           </div>
         </div>
-
-        <!-- Add more skills easily by copying a skill-box and changing data-percent + label -->
       </div>
     </section>
 
-    <section id="contact" class="contact container">
-      <h2>Contact</h2>
+    <!-- Media section: video, audio, canvas -->
+    <section id="media" class="container" aria-labelledby="media-heading">
+      <h2 id="media-heading">Media</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; align-items:start; margin-top:.75rem;">
+        <div class="project" style="padding:0.6rem;">
+          <video controls width="100%" preload="metadata" poster="" aria-label="Demo video">
+            <source src="media/Happy Summer Britain! 🍦😡🇬🇧 Credit_ @marniemylah  #comedy #lipsync #original #sketch #actors #lol 720p.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+          <p style="padding:.5rem;">Random Video!</p>
+        </div>
+
+        <div class="project" style="padding:0.6rem;">
+          <audio controls preload="metadata" aria-label="Sample audio">
+            <source src="media/focus on career meme.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <p style="padding:.5rem;">Audio narration</p>
+        </div>
+
+        <div class="project" style="padding:0.6rem;">
+          <canvas id="demo-canvas" width="400" height="220" role="img" aria-label="Sample canvas drawing" style="width:100%; border-radius:8px; display:block; background:#fff;"></canvas>
+          <p style="padding:.5rem;">Canvas drawing (simple)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image slider -->
+    <section id="gallery" class="container" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading">Gallery</h2>
+      <div class="slider" aria-roledescription="carousel" aria-label="Image slider">
+        <div class="slides">
+          <img src="images/project1.png" alt="Slide 1">
+          <img src="images/Screenshot (693).png" alt="Slide 2">
+          <img src="images/project2.png" alt="Slide 3">
+        </div>
+        <button class="slider-btn prev" aria-label="Previous slide">‹</button>
+        <button class="slider-btn next" aria-label="Next slide">›</button>
+      </div>
+    </section>
+
+    <section id="contact" class="contact container" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
       <p>If you’d like to work together or say hi, use the form below.</p>
 
-      <form class="contact-form" action="#" method="post" aria-labelledby="contact-heading" novalidate>
-        <h3 id="contact-heading" class="visually-hidden">Contact form</h3>
-
+      <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
         <label for="name">Name</label>
         <input type="text" id="name" name="name" aria-required="true" required placeholder="Your full name">
 
@@ -123,9 +148,13 @@
         <textarea id="message" name="message" rows="6" aria-required="true" required placeholder="Tell me about your project or question"></textarea>
 
         <button type="submit" class="btn-primary">Send message</button>
+        <div id="form-status" role="status" aria-live="polite" style="margin-top:.5rem; color:var(--muted)"></div>
       </form>
     </section>
+
   </main>
+
+  <button id="back-to-top" title="Back to top" aria-label="Back to top">↑</button>
 
   <footer class="site-footer">
     <div class="container">
@@ -133,75 +162,6 @@
     </div>
   </footer>
 
-  <script>
-    // set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Simple nav toggle for small screens
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.getElementById('primary-nav');
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      navList.classList.toggle('nav-open');
-    });
-
-    // Close mobile nav when a link is clicked (better UX)
-    document.querySelectorAll('.nav-list a').forEach(a => {
-      a.addEventListener('click', () => {
-        navList.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    /* ========== Animated Skill Bars ========== */
-    (function () {
-      const fills = Array.from(document.querySelectorAll('.fill'));
-
-      if (!('IntersectionObserver' in window)) {
-        // Fallback: just animate immediately
-        fills.forEach(expandFill);
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const fill = entry.target;
-            expandFill(fill);
-            obs.unobserve(fill);
-          }
-        });
-      }, {
-        root: null,
-        rootMargin: '0px 0px -10% 0px',
-        threshold: 0.15
-      });
-
-      fills.forEach((f) => observer.observe(f));
-
-      // Expand function with accessible updates and a little stagger
-      function expandFill(fillEl) {
-        const percent = parseInt(fillEl.getAttribute('data-percent') || 0, 10);
-        // small jittered delay based on index for stagger effect
-        const index = fills.indexOf(fillEl);
-        const delay = Math.min(500, index * 120); // ms
-        fillEl.style.transition = 'width 1.2s cubic-bezier(.2,.9,.2,1) ' + (delay/1000) + 's';
-        // set width (triggers transition)
-        requestAnimationFrame(() => {
-          fillEl.style.width = percent + '%';
-          fillEl.setAttribute('aria-valuenow', percent);
-          // Put visible text inside fill for large widths, otherwise keep percent on the right
-          if (percent >= 18) {
-            fillEl.textContent = percent + '%';
-            // ensure contrast for narrower widths by hiding when too small
-            if (percent < 28) {
-              fillEl.style.paddingRight = '6px';
-            }
-          }
-        });
-      }
-    })();
-  </script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
